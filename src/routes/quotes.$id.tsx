@@ -7,7 +7,7 @@ import { DeleteDocButton } from "@/components/DeleteDocButton";
 import { useUpdateStatus, useInvalidateDocuments, useMarkDepositPaid } from "@/lib/queries";
 import { buildInvoiceFromQuote } from "@/lib/documents";
 import { money } from "@/lib/format";
-import { ArrowRightCircle, ClipboardList, Banknote } from "lucide-react";
+import { ArrowRightCircle, ClipboardList, Banknote, Pencil } from "lucide-react";
 
 export const Route = createFileRoute("/quotes/$id")({
   component: QuoteDetail,
