@@ -241,6 +241,7 @@ export type Database = {
     }
     Functions: {
       generate_doc_number: { Args: { p_doc_type: string }; Returns: string }
+      is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
       [_ in never]: never
