@@ -23,6 +23,7 @@ import { Route as QuotesNewRouteImport } from './routes/quotes.new'
 import { Route as QuotesIdRouteImport } from './routes/quotes.$id'
 import { Route as InvoicesIdRouteImport } from './routes/invoices.$id'
 import { Route as DeliveryIdRouteImport } from './routes/delivery.$id'
+import { Route as QuotesEditIdRouteImport } from './routes/quotes.edit.$id'
 
 const TrackerRoute = TrackerRouteImport.update({
   id: '/tracker',
@@ -94,6 +95,11 @@ const DeliveryIdRoute = DeliveryIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => DeliveryRoute,
 } as any)
+const QuotesEditIdRoute = QuotesEditIdRouteImport.update({
+  id: '/edit/$id',
+  path: '/edit/$id',
+  getParentRoute: () => QuotesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/delivery/': typeof DeliveryIndexRoute
   '/invoices/': typeof InvoicesIndexRoute
   '/quotes/': typeof QuotesIndexRoute
+  '/quotes/edit/$id': typeof QuotesEditIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -123,6 +130,7 @@ export interface FileRoutesByTo {
   '/delivery': typeof DeliveryIndexRoute
   '/invoices': typeof InvoicesIndexRoute
   '/quotes': typeof QuotesIndexRoute
+  '/quotes/edit/$id': typeof QuotesEditIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   '/delivery/': typeof DeliveryIndexRoute
   '/invoices/': typeof InvoicesIndexRoute
   '/quotes/': typeof QuotesIndexRoute
+  '/quotes/edit/$id': typeof QuotesEditIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -158,6 +167,7 @@ export interface FileRouteTypes {
     | '/delivery/'
     | '/invoices/'
     | '/quotes/'
+    | '/quotes/edit/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -171,6 +181,7 @@ export interface FileRouteTypes {
     | '/delivery'
     | '/invoices'
     | '/quotes'
+    | '/quotes/edit/$id'
   id:
     | '__root__'
     | '/'
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
     | '/delivery/'
     | '/invoices/'
     | '/quotes/'
+    | '/quotes/edit/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -299,6 +311,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DeliveryIdRouteImport
       parentRoute: typeof DeliveryRoute
     }
+    '/quotes/edit/$id': {
+      id: '/quotes/edit/$id'
+      path: '/edit/$id'
+      fullPath: '/quotes/edit/$id'
+      preLoaderRoute: typeof QuotesEditIdRouteImport
+      parentRoute: typeof QuotesRoute
+    }
   }
 }
 
@@ -334,12 +353,14 @@ interface QuotesRouteChildren {
   QuotesIdRoute: typeof QuotesIdRoute
   QuotesNewRoute: typeof QuotesNewRoute
   QuotesIndexRoute: typeof QuotesIndexRoute
+  QuotesEditIdRoute: typeof QuotesEditIdRoute
 }
 
 const QuotesRouteChildren: QuotesRouteChildren = {
   QuotesIdRoute: QuotesIdRoute,
   QuotesNewRoute: QuotesNewRoute,
   QuotesIndexRoute: QuotesIndexRoute,
+  QuotesEditIdRoute: QuotesEditIdRoute,
 }
 
 const QuotesRouteWithChildren =

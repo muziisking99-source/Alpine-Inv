@@ -103,6 +103,13 @@ function QuoteDetail() {
               </button>
             )}
             <button
+              onClick={() => navigate({ to: "/quotes/edit/$id", params: { id: doc.id } })}
+              className="press inline-flex items-center gap-2 rounded-[4px] border px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-[color:var(--mid-navy)] transition-colors hover:bg-[color:var(--offwhite)] active:scale-[0.97]"
+              style={{ borderColor: "var(--border)" }}
+            >
+              <Pencil className="h-4 w-4" /> Edit
+            </button>
+            <button
               onClick={() => convertToInvoice(doc, items)}
               className="press inline-flex items-center gap-2 rounded-[4px] bg-[color:var(--royal)] px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-white transition-all hover:bg-[color:var(--royal-deep)] active:scale-[0.97]"
             >
