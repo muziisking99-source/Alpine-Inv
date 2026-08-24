@@ -29,9 +29,17 @@ const nextId = () => ITEM_SEQ++;
 export function QuoteForm({
   onSubmit,
   initial,
+  title = "New Quotation",
+  status = "draft",
+  draftLabel = "Save as Draft",
+  sendLabel = "Send Quote",
 }: {
   onSubmit: (payload: Payload, items: Omit<Item, "_id">[], send: boolean) => Promise<void>;
   initial?: Partial<Payload> & { items?: Omit<Item, "_id">[] };
+  title?: string;
+  status?: string;
+  draftLabel?: string;
+  sendLabel?: string;
 }) {
   const [customerName, setCustomerName] = useState(initial?.customer_name ?? "");
   const [customerEmail, setCustomerEmail] = useState(initial?.customer_email ?? "");
