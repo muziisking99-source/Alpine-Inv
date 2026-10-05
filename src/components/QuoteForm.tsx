@@ -30,9 +30,17 @@ const nextId = () => ITEM_SEQ++;
 export function QuoteForm({
   onSubmit,
   initial,
+  title = "New Quotation",
+  status = "draft",
+  draftLabel = "Save as Draft",
+  sendLabel = "Send Quote",
 }: {
   onSubmit: (payload: Payload, items: Omit<Item, "_id">[], send: boolean) => Promise<void>;
   initial?: Partial<Payload> & { items?: Omit<Item, "_id">[] };
+  title?: string;
+  status?: string;
+  draftLabel?: string;
+  sendLabel?: string;
 }) {
   const [customerName, setCustomerName] = useState(initial?.customer_name ?? "");
   const [customerEmail, setCustomerEmail] = useState(initial?.customer_email ?? "");
@@ -154,8 +162,8 @@ export function QuoteForm({
   return (
     <div>
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="page-title font-serif text-4xl leading-none">New Quotation</h1>
-        <StatusBadge status="draft" />
+        <h1 className="page-title font-serif text-4xl leading-none">{title}</h1>
+        <StatusBadge status={status} />
       </div>
 
       <datalist id="customer-names">
@@ -378,7 +386,7 @@ export function QuoteForm({
           className="press rounded-[4px] border px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] text-[color:var(--mid-navy)] transition-colors hover:bg-[color:var(--offwhite)] active:scale-[0.97] disabled:opacity-60"
           style={{ borderColor: "var(--border)" }}
         >
-          Save as Draft
+          {draftLabel}
         </button>
         <button
           disabled={busy}
@@ -387,7 +395,7 @@ export function QuoteForm({
         >
           <span className="grid">
             <span className={`col-start-1 row-start-1 transition-opacity duration-150 ${busy ? "opacity-0" : "opacity-100"}`}>
-              Send Quote
+              {sendLabel}
             </span>
             <span className={`col-start-1 row-start-1 flex items-center justify-center transition-opacity duration-150 ${busy ? "opacity-100" : "opacity-0"}`}>
               <Spinner />
