@@ -12,6 +12,7 @@ type Payload = {
   customer_email: string;
   customer_phone: string;
   customer_address: string;
+  customer_vat_number: string;
   project_description: string;
   notes: string;
   doc_date: string;
@@ -37,6 +38,7 @@ export function QuoteForm({
   const [customerEmail, setCustomerEmail] = useState(initial?.customer_email ?? "");
   const [customerPhone, setCustomerPhone] = useState(initial?.customer_phone ?? "");
   const [customerAddress, setCustomerAddress] = useState(initial?.customer_address ?? "");
+  const [customerVat, setCustomerVat] = useState(initial?.customer_vat_number ?? "");
   const [project, setProject] = useState(initial?.project_description ?? "");
   const [notes, setNotes] = useState(initial?.notes ?? "");
   const [docDate, setDocDate] = useState(initial?.doc_date ?? new Date().toISOString().slice(0, 10));
@@ -73,6 +75,7 @@ export function QuoteForm({
       if (match.email) setCustomerEmail(match.email);
       if (match.phone) setCustomerPhone(match.phone);
       if (match.address) setCustomerAddress(match.address);
+      if (match.vatNumber) setCustomerVat(match.vatNumber);
     }
   }
 
@@ -129,6 +132,7 @@ export function QuoteForm({
           customer_email: customerEmail,
           customer_phone: customerPhone,
           customer_address: customerAddress,
+          customer_vat_number: customerVat,
           project_description: project,
           notes,
           doc_date: docDate,
@@ -175,24 +179,29 @@ export function QuoteForm({
             aria-invalid={!!showErr("customer_name")}
           />
         </Field>
-        <Field label="Customer Email" error={showErr("customer_email") || undefined}>
-          <input
-            type="email"
-            value={customerEmail}
-            onChange={(e) => setCustomerEmail(e.target.value)}
-            onBlur={() => setTouched((t) => ({ ...t, customer_email: true }))}
-            className={inputCls}
-            aria-invalid={!!showErr("customer_email")}
-          />
-        </Field>
-        <Field label="Customer Phone">
-          <input value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} className={inputCls} />
-        </Field>
+        <div className="md:col-span-2">
+          <Field label="Customer Email" error={showErr("customer_email") || undefined}>
+            <input
+              type="email"
+              value={customerEmail}
+              onChange={(e) => setCustomerEmail(e.target.value)}
+              onBlur={() => setTouched((t) => ({ ...t, customer_email: true }))}
+              className={inputCls}
+              aria-invalid={!!showErr("customer_email")}
+            />
+          </Field>
+        </div>
         <div className="md:col-span-2">
           <Field label="Customer Address">
             <input value={customerAddress} onChange={(e) => setCustomerAddress(e.target.value)} className={inputCls} />
           </Field>
         </div>
+        <Field label="Customer Phone">
+          <input value={customerPhone} onChange={(e) => setCustomerPhone(e.target.value)} className={inputCls} />
+        </Field>
+        <Field label="Customer VAT Number">
+          <input value={customerVat} onChange={(e) => setCustomerVat(e.target.value)} className={inputCls} />
+        </Field>
         <div className="md:col-span-2">
           <Field label="Project / Job Description">
             <input value={project} onChange={(e) => setProject(e.target.value)} className={inputCls} />

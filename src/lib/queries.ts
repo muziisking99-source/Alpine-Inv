@@ -141,7 +141,7 @@ export function useIsAdmin(): boolean {
   return useRole() === "admin";
 }
 
-export type CustomerSuggestion = { name: string; email: string; phone: string; address: string };
+export type CustomerSuggestion = { name: string; email: string; phone: string; address: string; vatNumber: string };
 
 /** Unique customers derived from the shared documents cache, for autocomplete. */
 export function useCustomers() {
@@ -161,6 +161,7 @@ export function useCustomers() {
           email: d.customer_email ?? "",
           phone: d.customer_phone ?? "",
           address: d.customer_address ?? "",
+          vatNumber: d.customer_vat_number ?? "",
         });
         if (list.length >= 50) break;
       }

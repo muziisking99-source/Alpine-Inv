@@ -6,6 +6,7 @@ export function buildInvoiceFromQuote(quote: {
   customer_email?: string | null;
   customer_phone?: string | null;
   customer_address?: string | null;
+  customer_vat_number?: string | null;
   project_description?: string | null;
   subtotal: number;
   tax_rate: number;
@@ -26,6 +27,7 @@ export function buildInvoiceFromQuote(quote: {
     customer_email: quote.customer_email,
     customer_phone: quote.customer_phone,
     customer_address: quote.customer_address,
+    customer_vat_number: quote.customer_vat_number,
     project_description: quote.project_description,
     subtotal: quote.subtotal,
     tax_rate: quote.tax_rate,

@@ -69,8 +69,11 @@ export function DocumentDetail({ id, listLabel, listTo, extraCards, actions, pdf
         <InfoCard label="Customer">
           <div className="text-sm text-[color:var(--ink)]">{doc.customer_name}</div>
           <div className="mt-1 text-xs text-[color:var(--muted-navy)]">{doc.customer_email}</div>
-          <div className="text-xs text-[color:var(--muted-navy)]">{doc.customer_phone}</div>
           <div className="text-xs text-[color:var(--muted-navy)]">{doc.customer_address}</div>
+          <div className="text-xs text-[color:var(--muted-navy)]">{doc.customer_phone}</div>
+          {doc.customer_vat_number && (
+            <div className="text-xs text-[color:var(--muted-navy)]">VAT No: {doc.customer_vat_number}</div>
+          )}
         </InfoCard>
         <InfoCard label="Project">
           <div className="text-sm text-[color:var(--ink)]">{doc.project_description || "—"}</div>

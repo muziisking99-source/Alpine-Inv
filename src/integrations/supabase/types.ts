@@ -58,6 +58,7 @@ export type Database = {
           customer_email: string | null
           customer_name: string
           customer_phone: string | null
+          customer_vat_number: string | null
           deposit_paid: boolean
           deposit_required: number
           doc_date: string
@@ -83,6 +84,7 @@ export type Database = {
           customer_email?: string | null
           customer_name?: string
           customer_phone?: string | null
+          customer_vat_number?: string | null
           deposit_paid?: boolean
           deposit_required?: number
           doc_date?: string
@@ -108,6 +110,7 @@ export type Database = {
           customer_email?: string | null
           customer_name?: string
           customer_phone?: string | null
+          customer_vat_number?: string | null
           deposit_paid?: boolean
           deposit_required?: number
           doc_date?: string

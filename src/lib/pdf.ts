@@ -10,6 +10,7 @@ type Doc = {
   customer_email?: string | null;
   customer_phone?: string | null;
   customer_address?: string | null;
+  customer_vat_number?: string | null;
   project_description?: string | null;
   doc_date: string;
   due_date?: string | null;
@@ -252,14 +253,18 @@ function drawCustomer(pdf: jsPDF, doc: Doc, W: number, topY: number, heading = "
     pdf.text(doc.customer_email, 40, y);
     y += 14;
   }
-  if (doc.customer_phone) {
-    pdf.text(doc.customer_phone, 40, y);
-    y += 14;
-  }
   if (doc.customer_address) {
     const wrapped = pdf.splitTextToSize(doc.customer_address, W / 2 - 60);
     pdf.text(wrapped, 40, y);
     y += wrapped.length * 14;
+  }
+  if (doc.customer_phone) {
+    pdf.text(doc.customer_phone, 40, y);
+    y += 14;
+  }
+  if (doc.customer_vat_number) {
+    pdf.text(`VAT No: ${doc.customer_vat_number}`, 40, y);
+    y += 14;
   }
   return y;
 }
