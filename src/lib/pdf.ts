@@ -54,10 +54,11 @@ const LOGO_DISPLAY_W = 135;
 
 const BANKING = {
   heading: "Banking Details",
-  accountHolder: "Alpine",
-  bank: "Capitec Bank",
-  accountNumber: "252 504 706",
-  branchCode: "470010",
+  accountHolder: COMPANY.name,
+  bank: "First National Bank (FNB)",
+  accountType: "Islamic Gold Business Account",
+  accountNumber: "63230865230",
+  branchCode: "240212",
 };
 
 const QUOTE_TERMS = {
@@ -176,6 +177,7 @@ function drawBankingDetails(
   const lines = [
     `Account name: ${BANKING.accountHolder}`,
     BANKING.bank,
+    `Account type: ${BANKING.accountType}`,
     `Account number: ${BANKING.accountNumber}`,
     `Branch Code: ${BANKING.branchCode}`,
   ];
